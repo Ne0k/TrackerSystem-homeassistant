@@ -1,0 +1,38 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "TrackerSystem",
+        "description": "Connect to your TrackerSystem portal.",
+        "data": {
+          "base_url": "Portal URL",
+          "api_key": "API key"
+        }
+      },
+      "select": {
+        "title": "Select objects",
+        "description": "Choose which vehicles/objects to add to Home Assistant.",
+        "data": {
+          "devices": "Objects"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Cannot connect to the portal.",
+      "invalid_auth": "Invalid API key."
+    },
+    "abort": {
+      "already_configured": "This portal is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Settings",
+        "data": {
+          "scan_interval": "Update interval (seconds)"
+        }
+      }
+    }
+  }
+}
