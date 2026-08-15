@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="images/logo.png" alt="TrackerSystem" width="220">
+</p>
+
 # TrackerSystem — Home Assistant integration
 
 [![Validate](https://github.com/Ne0k/trackersystem-homeassistant/actions/workflows/validate.yml/badge.svg)](https://github.com/Ne0k/trackersystem-homeassistant/actions/workflows/validate.yml)
