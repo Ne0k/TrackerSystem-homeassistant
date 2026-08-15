@@ -1,4 +1,4 @@
-"""DataUpdateCoordinator: haalt periodiek alle objecten op van het portaal."""
+"""DataUpdateCoordinator: periodically fetches all objects from the portal."""
 from __future__ import annotations
 
 import logging
@@ -17,7 +17,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class TrackerSystemCoordinator(DataUpdateCoordinator):
-    """Poll het portaal en houd de objectdata per IMEI bij."""
+    """Poll the portal and keep per-IMEI object data."""
 
     def __init__(
         self,
@@ -44,7 +44,7 @@ class TrackerSystemCoordinator(DataUpdateCoordinator):
     async def fetch(
         session: aiohttp.ClientSession, base_url: str, api_key: str
     ) -> dict[str, dict]:
-        """Haal de volledige objectlijst op; ook gebruikt door de config-flow."""
+        """Fetch the full object list; also used by the config flow."""
         url = base_url.rstrip("/") + API_LIST_PATH
         headers = {"X-Api-Key": api_key, "Accept": "application/json"}
         try:
@@ -67,4 +67,4 @@ class TrackerSystemCoordinator(DataUpdateCoordinator):
 
 
 class InvalidAuth(Exception):
-    """Ongeldige API-sleutel."""
+    """Invalid API key."""

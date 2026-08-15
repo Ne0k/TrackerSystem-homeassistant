@@ -1,4 +1,4 @@
-"""Device tracker: toont het voertuig op de HA-kaart."""
+"""Device tracker: shows the vehicle on the HA map."""
 from __future__ import annotations
 
 from homeassistant.components.device_tracker import SourceType, TrackerEntity
@@ -19,9 +19,9 @@ async def async_setup_entry(
 
 
 class TrackerSystemTracker(TrackerSystemEntity, TrackerEntity):
-    """GPS-positie van een voertuig."""
+    """GPS position of a vehicle."""
 
-    _attr_name = None  # gebruikt de device-naam
+    _attr_name = None  # use the device name
     _attr_icon = "mdi:car"
 
     def __init__(self, coordinator, imei: str) -> None:

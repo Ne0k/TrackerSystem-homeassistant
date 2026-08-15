@@ -1,4 +1,4 @@
-"""Config- en options-flow voor TrackerSystem."""
+"""Config and options flow for TrackerSystem."""
 from __future__ import annotations
 
 from typing import Any
@@ -30,7 +30,7 @@ from .coordinator import InvalidAuth, TrackerSystemCoordinator
 
 
 class TrackerSystemConfigFlow(ConfigFlow, domain=DOMAIN):
-    """Verbind met het portaal en kies de objecten."""
+    """Connect to the portal and select the objects."""
 
     VERSION = 1
 
@@ -109,7 +109,7 @@ class TrackerSystemConfigFlow(ConfigFlow, domain=DOMAIN):
 
 
 class TrackerSystemOptionsFlow(OptionsFlow):
-    """Pas het polling-interval aan."""
+    """Adjust the polling interval."""
 
     def __init__(self, entry: ConfigEntry) -> None:
         self._entry = entry

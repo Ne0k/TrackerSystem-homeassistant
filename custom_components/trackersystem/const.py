@@ -1,4 +1,4 @@
-"""Constanten voor de TrackerSystem-integratie."""
+"""Constants for the TrackerSystem integration."""
 
 DOMAIN = "trackersystem"
 

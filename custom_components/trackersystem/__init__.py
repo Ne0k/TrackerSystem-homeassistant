@@ -1,4 +1,4 @@
-"""TrackerSystem-integratie voor Home Assistant."""
+"""TrackerSystem integration for Home Assistant."""
 from __future__ import annotations
 
 from homeassistant.config_entries import ConfigEntry
@@ -22,7 +22,7 @@ PLATFORMS: list[Platform] = [
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Zet een config-entry op."""
+    """Set up a config entry."""
     coordinator = TrackerSystemCoordinator(
         hass,
         base_url=entry.data[CONF_BASE_URL],
@@ -38,7 +38,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
 
 async def async_unload_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
-    """Verwijder een config-entry."""
+    """Unload a config entry."""
     unloaded = await hass.config_entries.async_unload_platforms(entry, PLATFORMS)
     if unloaded:
         hass.data[DOMAIN].pop(entry.entry_id, None)

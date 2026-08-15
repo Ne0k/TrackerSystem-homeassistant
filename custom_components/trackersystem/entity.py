@@ -1,4 +1,4 @@
-"""Gedeelde basis-entity: koppelt elke entiteit aan een voertuig-device."""
+"""Shared base entity: links every entity to a vehicle device."""
 from __future__ import annotations
 
 from homeassistant.helpers.entity import DeviceInfo
@@ -9,7 +9,7 @@ from .coordinator import TrackerSystemCoordinator
 
 
 class TrackerSystemEntity(CoordinatorEntity[TrackerSystemCoordinator]):
-    """Basis voor alle TrackerSystem-entiteiten (één device per IMEI)."""
+    """Base for all TrackerSystem entities (one device per IMEI)."""
 
     _attr_has_entity_name = True
 

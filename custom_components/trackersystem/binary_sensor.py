@@ -1,4 +1,4 @@
-"""Binary sensors: contact (aan/uit) en online-status."""
+"""Binary sensors: ignition (on/off) and online status."""
 from __future__ import annotations
 
 from homeassistant.components.binary_sensor import (
@@ -16,7 +16,7 @@ from .entity import TrackerSystemEntity
 BINARY_SENSORS: tuple[BinarySensorEntityDescription, ...] = (
     BinarySensorEntityDescription(
         key="ignition",
-        name="Contact",
+        name="Ignition",
         device_class=BinarySensorDeviceClass.RUNNING,
         icon="mdi:key-variant",
     ),
@@ -42,7 +42,7 @@ async def async_setup_entry(
 
 
 class TrackerSystemBinarySensor(TrackerSystemEntity, BinarySensorEntity):
-    """Aan/uit-status van een voertuig."""
+    """On/off state of a vehicle."""
 
     def __init__(self, coordinator, imei: str, description) -> None:
         super().__init__(coordinator, imei)

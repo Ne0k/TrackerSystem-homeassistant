@@ -1,50 +1,51 @@
-# TrackerSystem — Home Assistant integratie
+# TrackerSystem — Home Assistant integration
 
 [![Validate](https://github.com/Ne0k/trackersystem-homeassistant/actions/workflows/validate.yml/badge.svg)](https://github.com/Ne0k/trackersystem-homeassistant/actions/workflows/validate.yml)
+[![hacs_badge](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://github.com/hacs/integration)
 
-Haalt je voertuigen/objecten uit het **TrackerSystem-portaal** en zet ze als
-apparaten in Home Assistant. Per gekozen object krijg je:
+Brings your vehicles/objects from the **TrackerSystem portal** into Home Assistant
+as devices. For every selected object you get:
 
-- **Device tracker** — positie op de HA-kaart (lat/lng, snelheid, koers, hoogte)
-- **Sensoren** — Accu (%), Tankniveau (%), Brandstof (L), Voedingsspanning (V),
-  Snelheid (km/u), Kilometerstand (km)
-- **Binary sensors** — Contact (aan/uit), Online
+- **Device tracker** — live position on the HA map (lat/lng, speed, course, altitude)
+- **Sensors** — Battery (%), Fuel level (%), Fuel (L), Supply voltage (V),
+  Speed (km/h), Odometer (km)
+- **Binary sensors** — Ignition (on/off), Online
+- Battery and fuel sensors are created only when the tracker actually reports them.
 
-Alles read-only; de integratie schrijft niets terug naar het portaal.
+Everything is read-only; the integration never writes anything back to the portal.
 
-## Installatie
+## Installation
 
 **Via HACS (custom repository)**
 1. HACS → Integrations → ⋮ → *Custom repositories*
-2. Repository: `https://github.com/Ne0k/trackersystem-homeassistant` — categorie *Integration*
-3. Installeer "TrackerSystem" en herstart Home Assistant.
+2. Repository: `https://github.com/Ne0k/trackersystem-homeassistant` — category *Integration*
+3. Install "TrackerSystem" and restart Home Assistant.
 
-**Handmatig**
-1. Kopieer de map `custom_components/trackersystem` naar de `config/custom_components/`
-   van je Home Assistant.
-2. Herstart Home Assistant.
+**Manual**
+1. Copy the `custom_components/trackersystem` folder into the
+   `config/custom_components/` directory of your Home Assistant installation.
+2. Restart Home Assistant.
 
-## Instellen
+## Configuration
 
-1. **Instellingen → Apparaten & diensten → Integratie toevoegen → TrackerSystem**.
-2. Vul in:
-   - **Portaal-URL**: `https://portal.trackersystem.nl`
-   - **API-sleutel**: je persoonlijke sleutel — die krijg je van de beheerder van
-     het portaal. De sleutel bepaalt welke objecten je ziet.
-3. Kies de objecten die je in Home Assistant wilt.
-4. Klaar — je krijgt per object een apparaat met de bovenstaande entiteiten.
+1. **Settings → Devices & services → Add integration → TrackerSystem**.
+2. Enter:
+   - **Portal URL**: `https://portal.trackersystem.nl`
+   - **API key**: your personal key — provided by the portal administrator.
+     The key determines which objects you can see.
+3. Select the objects you want in Home Assistant.
+4. Done — each object appears as a device with the entities listed above.
 
-Het ververs-interval (standaard 300 s) pas je aan via de opties van de integratie.
-Een tracker stuurt vooral data tijdens beweging; een interval van enkele minuten is
-ruim voldoende.
+The update interval (default 300 s) can be changed via the integration options.
+A tracker mainly sends data while moving; an interval of a few minutes is plenty.
 
 ## API
 
-De integratie praat met de read-only endpoints op het portaal:
+The integration talks to read-only endpoints on the portal:
 
-- `GET /api/ext/devices?full=1` — alle objecten met data (gebruikt voor polling)
-- `GET /api/ext/device?imei=<imei>` — één object
+- `GET /api/ext/devices?full=1` — all objects with data (used for polling)
+- `GET /api/ext/device?imei=<imei>` — a single object
 
-Auth via header `X-Api-Key` met een **persoonlijke API-sleutel per gebruiker**
-(beheerd in het portaal door de beheerder; intrekken = toegang weg). De respons is
-gescope't op de objecten van die gebruiker.
+Authentication uses the `X-Api-Key` header with a **personal per-user API key**
+(managed by the portal administrator; revoking the key removes access). The
+response is scoped to the objects linked to that user.

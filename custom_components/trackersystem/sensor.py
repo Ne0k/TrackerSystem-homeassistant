@@ -26,7 +26,7 @@ from .entity import TrackerSystemEntity
 
 @dataclass(frozen=True, kw_only=True)
 class TSSensor(SensorEntityDescription):
-    """Sensor-omschrijving; always=True → altijd aanmaken, anders alleen als er data is."""
+    """Sensor description; always=True → always create, otherwise only when data is present."""
 
     always: bool = False
 
@@ -35,28 +35,28 @@ SENSORS: tuple[TSSensor, ...] = (
     TSSensor(
         key="battery_pct",
         translation_key="battery",
-        name="Accu",
+        name="Battery",
         native_unit_of_measurement=PERCENTAGE,
         device_class=SensorDeviceClass.BATTERY,
         state_class=SensorStateClass.MEASUREMENT,
     ),
     TSSensor(
         key="fuel_pct",
-        name="Tankniveau",
+        name="Fuel level",
         native_unit_of_measurement=PERCENTAGE,
         icon="mdi:fuel",
         state_class=SensorStateClass.MEASUREMENT,
     ),
     TSSensor(
         key="fuel_l",
-        name="Brandstof",
+        name="Fuel",
         native_unit_of_measurement=UnitOfVolume.LITERS,
         icon="mdi:fuel",
         state_class=SensorStateClass.MEASUREMENT,
     ),
     TSSensor(
         key="ext_voltage_v",
-        name="Voedingsspanning",
+        name="Supply voltage",
         native_unit_of_measurement=UnitOfElectricPotential.VOLT,
         device_class=SensorDeviceClass.VOLTAGE,
         state_class=SensorStateClass.MEASUREMENT,
@@ -64,7 +64,7 @@ SENSORS: tuple[TSSensor, ...] = (
     ),
     TSSensor(
         key="speed_kmh",
-        name="Snelheid",
+        name="Speed",
         native_unit_of_measurement=UnitOfSpeed.KILOMETERS_PER_HOUR,
         device_class=SensorDeviceClass.SPEED,
         state_class=SensorStateClass.MEASUREMENT,
@@ -72,7 +72,7 @@ SENSORS: tuple[TSSensor, ...] = (
     ),
     TSSensor(
         key="odometer_km",
-        name="Kilometerstand",
+        name="Odometer",
         native_unit_of_measurement=UnitOfLength.KILOMETERS,
         device_class=SensorDeviceClass.DISTANCE,
         state_class=SensorStateClass.TOTAL_INCREASING,
@@ -97,7 +97,7 @@ async def async_setup_entry(
 
 
 class TrackerSystemSensor(TrackerSystemEntity, SensorEntity):
-    """Eén sensorwaarde van een voertuig."""
+    """A single sensor value of a vehicle."""
 
     entity_description: TSSensor
 
