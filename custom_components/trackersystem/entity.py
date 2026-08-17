@@ -32,5 +32,4 @@ class TrackerSystemEntity(CoordinatorEntity[TrackerSystemCoordinator]):
             name=self._data.get("name") or self._imei,
             manufacturer=MANUFACTURER,
             model="GPS-tracker",
-            serial_number=self._imei,
         )

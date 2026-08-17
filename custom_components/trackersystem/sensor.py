@@ -18,6 +18,7 @@ from homeassistant.const import (
     UnitOfVolume,
 )
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers.entity import EntityCategory
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 
 from .const import CONF_DEVICES, DOMAIN
@@ -77,6 +78,13 @@ SENSORS: tuple[TSSensor, ...] = (
         device_class=SensorDeviceClass.DISTANCE,
         state_class=SensorStateClass.TOTAL_INCREASING,
         icon="mdi:counter",
+        always=True,
+    ),
+    TSSensor(
+        key="imei",
+        name="IMEI",
+        icon="mdi:identifier",
+        entity_category=EntityCategory.DIAGNOSTIC,
         always=True,
     ),
 )
