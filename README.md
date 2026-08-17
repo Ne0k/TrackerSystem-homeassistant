@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="images/logo.png" alt="TrackerSystem" width="220">
+  <img src="https://raw.githubusercontent.com/Ne0k/trackersystem-homeassistant/main/images/logo.png" alt="TrackerSystem" width="220">
 </p>
 
 # TrackerSystem — Home Assistant integration
